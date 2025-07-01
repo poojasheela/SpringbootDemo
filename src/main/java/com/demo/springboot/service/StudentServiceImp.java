@@ -15,11 +15,13 @@ public class StudentServiceImp implements StudentService {
 
     @Override
     public Student addStudent(Student student) {
+
         return studentRepository.save(student);
     }
 
     @Override
     public List<Student> getAllStudents() {
+
         return studentRepository.findAll();
     }
 
@@ -38,6 +40,7 @@ public class StudentServiceImp implements StudentService {
 
     @Override
     public void deleteStudent(int id) {
+
         studentRepository.deleteById(id);
     }
 }
