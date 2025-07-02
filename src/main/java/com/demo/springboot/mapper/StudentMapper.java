@@ -5,9 +5,13 @@ import com.demo.springboot.dto.StudentDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+
 @Mapper
 public interface StudentMapper {
-    StudentMapper mapper= Mappers.getMapper(StudentMapper.class);
-    StudentDto mapToStudentDto(Student student);
+
+    StudentMapper instance = Mappers.getMapper(StudentMapper.class);
+
+    StudentDto toDto(Student student);
+    Student toEntity(StudentDto studentDto);
 
 }

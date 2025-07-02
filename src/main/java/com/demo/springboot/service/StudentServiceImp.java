@@ -2,40 +2,39 @@ package com.demo.springboot.service;
 
 import com.demo.springboot.Student;
 import com.demo.springboot.dto.StudentDto;
+import com.demo.springboot.mapper.StudentMapper;
 import com.demo.springboot.repository.StudentRepository;
 //import org.modelmapper.ModelMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImp implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
 
+    private StudentMapper mapper= StudentMapper.instance;
 
     @Override
-   public Student addStudent(StudentDto studentDto) {
-        Student student = new Student();
-        //student.setId(studentDto.getId());
-        student.setName(studentDto.getName());
-        student.setCourse(studentDto.getCourse());
-      return studentRepository.save(student);
-   }
+    public Student addStudent(StudentDto studentDto) {
+        Student student = mapper.toEntity(studentDto);
+        return studentRepository.save(student);
+
+    }
 
 
-    // get using object mapping
+
     @Override
-    public StudentDto getStudentDtoById(int id) {
+    public StudentDto getStudentDtoById(int id){
         Student student = studentRepository.findById(id).orElse(null);
-        if (student == null) {
-            return null;
-        }
-        return new StudentDto(student.getId(), student.getName(), student.getCourse());
+        return mapper.toDto(student);
     }
 
     @Override
-    public Student updateStudent(int id, Student updatedStudent) {
+   public Student updateStudent(int id, Student updatedStudent) {
         Student student = studentRepository.findById(id).orElse(null);
         if (student != null) {
             student.setName(updatedStudent.getName());
@@ -52,4 +51,5 @@ public class StudentServiceImp implements StudentService {
 
         studentRepository.deleteById(id);
     }
+
 }

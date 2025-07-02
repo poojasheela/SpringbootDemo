@@ -3,10 +3,12 @@ package com.demo.springboot.controller;
 import com.demo.springboot.Student;
 import com.demo.springboot.dto.StudentDto;
 import com.demo.springboot.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/students")
 public class StudentController {
 
