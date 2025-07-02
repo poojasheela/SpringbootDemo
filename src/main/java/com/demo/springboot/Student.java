@@ -63,8 +63,7 @@ import jakarta.persistence.*;
         }
 
         public void setPassword(String password) {
-            this.password=password;
-
+            this.password = password;
         }
 
         public  void  setCourse(String course){

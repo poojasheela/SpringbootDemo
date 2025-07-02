@@ -11,9 +11,4 @@ public class SpringbootApplication {
 		SpringApplication.run(SpringbootApplication.class, args);
 	}
 
-	@Bean
-	public ModelMapper getModelMapper() {
-		return new ModelMapper();
 	}
-}
-
