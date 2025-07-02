@@ -1,6 +1,7 @@
 package com.demo.springboot.controller;
 
 import com.demo.springboot.Student;
+import com.demo.springboot.dto.CreateStudentDto;
 import com.demo.springboot.dto.StudentDto;
 import com.demo.springboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,12 @@ public class StudentController {
 
 
     @PostMapping("/post")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    public StudentDto createStudent(@RequestBody CreateStudentDto dto) {
+        return studentService.addStudent(dto);
     }
+  /* public Student addStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
+    }*/
 
     @GetMapping("/get/{id}")
     public StudentDto getStudentById(@PathVariable int id) {

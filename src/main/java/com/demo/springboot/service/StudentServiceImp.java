@@ -1,10 +1,12 @@
 package com.demo.springboot.service;
 
 import com.demo.springboot.Student;
+import com.demo.springboot.dto.CreateStudentDto;
 import com.demo.springboot.dto.StudentDto;
 import com.demo.springboot.mapper.StudentMapper;
 import com.demo.springboot.repository.StudentRepository;
 //import org.modelmapper.ModelMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,19 @@ public class StudentServiceImp implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-
-    @Override
+    @Autowired
+    private ModelMapper modelMapper;
+  /*  @Override
     public Student addStudent(Student student) {
 
         return studentRepository.save(student);
-    }
+    }*/
+  @Override
+  public StudentDto addStudent(CreateStudentDto createDto) {
+      Student student = modelMapper.map(createDto, Student.class);
+      Student saved = studentRepository.save(student);
+      return modelMapper.map(saved, StudentDto.class);
+  }
 
     @Override
     public StudentDto getStudentDtoById(int id) {

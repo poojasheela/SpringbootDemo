@@ -1,4 +1,5 @@
 package com.demo.springboot;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,9 +11,9 @@ public class SpringbootApplication {
 		SpringApplication.run(SpringbootApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	public ModelMapper getModelMapper() {
-		return new ModelMapper();*/
-
+		return new ModelMapper();
+	}
 }
 
